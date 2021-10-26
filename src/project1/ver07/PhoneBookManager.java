@@ -68,28 +68,28 @@ public class PhoneBookManager implements SubMenuItem {
 		String searchName = scanner.nextLine();
 		
 		boolean isFind = false;
-		Iterator<PhoneInfo> itr = set.iterator();
-		while(itr.hasNext()) {
-			PhoneInfo pi = itr.next();
-			if(searchName.equals(pi.name)) {
-				System.out.println(pi);
-				isFind = true;
-			}
-		}
-		if(isFind == false) {
-			System.out.println("찾는 데이터가 없습니다.\n");
-		}
-		
-//		for(int i=0; i<numOfInfo; i++) {
-//			if(searchName.compareTo(myPhoneInfo[i].name)==0) {
-//				myPhoneInfo[i].showPhoneInfo();
-//				System.out.println("데이터 검색이 완료되었습니다.\n");
-//				isFind =true;
+//		Iterator<PhoneInfo> itr = set.iterator();
+//		while(itr.hasNext()) {
+//			PhoneInfo pi = itr.next();
+//			if(searchName.equals(pi.name)) {
+//				System.out.println(pi);
+//				isFind = true;
 //			}
 //		}
 //		if(isFind == false) {
 //			System.out.println("찾는 데이터가 없습니다.\n");
 //		}
+		
+		for(int i=0; i<numOfInfo; i++) {
+			if(searchName.compareTo(myPhoneInfo[i].name)==0) {
+				myPhoneInfo[i].showPhoneInfo();
+				System.out.println("데이터 검색이 완료되었습니다.\n");
+				isFind =true;
+			}
+		}
+		if(isFind == false) {
+			System.out.println("찾는 데이터가 없습니다.\n");
+		}
 	}
 	
 	
