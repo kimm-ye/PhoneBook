@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.InputMismatchException;
 import java.util.Iterator;
@@ -15,7 +16,7 @@ import project1.ver08.PhoneCompanyInfo;
 import project1.ver08.PhoneInfo;
 import project1.ver08.PhoneSchoolInfo;
 
-public class PhoneBookManager {
+public class PhoneBookManager implements Serializable{ //Serializable 인터페이스를 구현하면 JVM에서 해당 객체는 저장하거나 다른 서버로 전송할 수 있도록 해준다
 
 	private PhoneInfo[] myPhoneInfo;
 	private int numOfInfo;
@@ -151,23 +152,20 @@ public class PhoneBookManager {
 		}
 	}
 	
-	public void savePhoneBook() { //컴퓨터 입장에서 저장하는 건 밖으로 빼내는것
+	public void savePhoneBook () { //컴퓨터 입장에서 저장하는 건 밖으로 빼내는것
 		try {
+			System.out.println("\n입력한 데이터를 모두 저장하였습니다.");
 			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/project1/ver08/PhoneBook.obj"));
 			
-//			for(PhoneInfo pi : set) {
-//				out.writeObject(pi);
-//			}
-			
-			Iterator<PhoneInfo> itr = set.iterator();
-			while(itr.hasNext()) {
-				PhoneInfo pi = itr.next();
+			for(PhoneInfo pi : set) {
 				out.writeObject(pi);
 			}
 			out.close();
+			
 		}
 		catch (Exception e) {
 			System.out.println("직렬화 예외발생");
+			e.printStackTrace();
 		}
 	}
 	
@@ -178,15 +176,15 @@ public class PhoneBookManager {
 			while(true) { //정보 갯수를 정확히 모르니까 while을 사용한다.
 				PhoneInfo pi = (PhoneInfo) in.readObject();
 				set.add(pi);
-				if(pi==null) break; //저장할 값이 없으면 스탑
+				if(pi==null) break; //pi에 들어온 값이 없으면 stop
 			}
 			in.close();
 		}
 		catch (FileNotFoundException e) {
 			System.out.println("파일없음");
 		}
-		catch (Exception e) {
-			System.out.println("불러올 객체가 없습니다.");
+		catch (Exception e) { 
+			System.out.println("기존 저장된 데이터를 불러옵니다.");
 		}
 		System.out.println("주소록 복원 완료");
 	}

@@ -1,9 +1,10 @@
 package project1.ver08;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 //데이터, 매니저 작성, 모든기능, 상속 넣기
-public class PhoneInfo {
+public class PhoneInfo implements Serializable {
 	
 	String name; //이름
 	String phoneNumber ; //전화번호
@@ -14,6 +15,7 @@ public class PhoneInfo {
 		this.phoneNumber = phoneNumber;
 	}
 	
+
 	public void showPhoneInfo() {
 		System.out.println("이름 : " + name); 
 		System.out.println("전화번호 : " + phoneNumber);

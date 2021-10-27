@@ -10,7 +10,7 @@ import project1.ver08.MenuItem;
 import project1.ver06.MenuSelectException;
 
 
-public class PhoneBookVer08 {
+public class PhoneBookVer08  {
 
 	public static void main(String[] args) {
 
@@ -41,8 +41,8 @@ public class PhoneBookVer08 {
 					manager.dataAllShow();
 					break;
 				case MenuItem.EXIT:
-					System.out.println("프로그램이 종료되었습니다.");
 					manager.savePhoneBook();
+					System.out.println("프로그램이 종료되었습니다.");
 					return; //return은 메인함수의 종료
 				}
 			}
