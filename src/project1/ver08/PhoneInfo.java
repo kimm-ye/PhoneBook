@@ -20,7 +20,7 @@ public class PhoneInfo {
 	}
 	
 	public static void printMenu() {
-		System.out.println("아래 메뉴를 선택하세요");
+		System.out.println("\n아래 메뉴를 선택하세요");
 		System.out.println("1. 데이터 입력");
 		System.out.println("2. 데이터 검색");
 		System.out.println("3. 데이터 삭제");
@@ -44,7 +44,7 @@ public class PhoneInfo {
 	@Override
 	public boolean equals(Object obj) {
 		PhoneInfo pi = (PhoneInfo)obj; //오브젝트가 더 높으니까 다운캐스팅
-		System.out.print("equals()메서드 호출됨: ");
+		//System.out.print("equals()메서드 호출됨: ");
 		if(pi.name.equals(this.name)) {
 			return true;
 		}
