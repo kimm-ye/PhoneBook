@@ -9,7 +9,7 @@ import project1.ver06.MenuItem;
 import project1.ver06.MenuSelectException;
 
 
-public class PhoneBookVer06 implements MenuItem  {
+public class PhoneBookVer06  {
 
 	public static void main(String[] args) {
 
@@ -28,19 +28,19 @@ public class PhoneBookVer06 implements MenuItem  {
 					throw mse;
 				}
 				switch(choice) {
-				case INPUT:
+				case MenuItem.INPUT:
 					manager.dataInput(choice);
 					break;
-				case SEARCH:
+				case MenuItem.SEARCH:
 					manager.dataSearch();
 					break;
-				case DELETE:
+				case MenuItem.DELETE:
 					manager.dataDelete();
 					break;
-				case PRINT: 
+				case MenuItem.PRINT: 
 					manager.dataAllShow();
 					break;
-				case EXIT:
+				case MenuItem.EXIT:
 					System.out.println("프로그램이 종료되었습니다.");
 					return; //return은 메인함수의 종료
 				}

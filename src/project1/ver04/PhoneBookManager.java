@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class PhoneBookManager {
 
-	static PhoneInfo[] myPhoneInfo;
-	static int numOfInfo;
+	private PhoneInfo[] myPhoneInfo;
+	private int numOfInfo;
 	
 	public PhoneBookManager(int num) {
 		myPhoneInfo = new PhoneInfo[num];

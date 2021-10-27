@@ -29,25 +29,31 @@ public class PhoneInfo {
 		System.out.print("선택 : ");
 	}
 	
-//	@Override
-//	public int hashCode() {
-//		int nameHashCode = name.hashCode(); //hash코드는 주소값이니까 정수형으로 반환
-//		return nameHashCode;
-//	}
-//	
-//	
-//	@Override
-//	public boolean equals(Object obj) {
-//		PhoneInfo pi = (PhoneInfo)obj; //오브젝트가 더 높으니까 다운캐스팅
-//
-//		if(PhoneInfo.name.equals(name)) {
-//			System.out.println(name);
-//			return true;
-//		}
-//		else {
-//			return false;
-//		}
-//	}
-//	
+	
+	@Override
+	public String toString() {
+		return 	"이름 : " + name + "/" + "전화번호 : " + phoneNumber ;
+	}
+	
+	@Override
+	public int hashCode() {
+		int nameHashCode = this.name.hashCode(); //hash코드는 주소값이니까 정수형으로 반환
+		//int phoneNumHashCode = this.phoneNumber.hashCode();
+		return nameHashCode;
+	}
+	
+	
+	@Override
+	public boolean equals(Object obj) {
+		PhoneInfo pi = (PhoneInfo)obj; //오브젝트가 더 높으니까 다운캐스팅
+
+		if(this.name.equals(pi.name)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
 	
 }

@@ -10,13 +10,12 @@ import project1.ver07.MenuItem;
 import project1.ver06.MenuSelectException;
 
 
-public class PhoneBookVer07 implements MenuItem  {
+public class PhoneBookVer07 {
 
 	public static void main(String[] args) {
 
 		Scanner scanner = new Scanner(System.in);
 		PhoneBookManager manager = new PhoneBookManager(100);
-//		HashSet<PhoneInfo> set = new HashSet<PhoneInfo>();
 		
 		//메뉴호출
 		while(true) {
@@ -29,19 +28,19 @@ public class PhoneBookVer07 implements MenuItem  {
 					throw mse;
 				}
 				switch(choice) {
-				case INPUT:
+				case MenuItem.INPUT:
 					manager.dataInput(choice);
 					break;
-				case SEARCH:
+				case MenuItem.SEARCH:
 					manager.dataSearch();
 					break;
-				case DELETE:
+				case MenuItem.DELETE:
 					manager.dataDelete();
 					break;
-				case PRINT: 
+				case MenuItem.PRINT: 
 					manager.dataAllShow();
 					break;
-				case EXIT:
+				case MenuItem.EXIT:
 					System.out.println("프로그램이 종료되었습니다.");
 					return; //return은 메인함수의 종료
 				}

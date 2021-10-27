@@ -2,10 +2,10 @@ package project1.ver05;
 
 import java.util.Scanner;
 
-public class PhoneBookManager implements SubMenuItem {
+public class PhoneBookManager {
 
-	static PhoneInfo[] myPhoneInfo;
-	static int numOfInfo;
+	private PhoneInfo[] myPhoneInfo;
+	private int numOfInfo;
 	
 	public PhoneBookManager(int num) {
 		myPhoneInfo = new PhoneInfo[num];
@@ -31,19 +31,19 @@ public class PhoneBookManager implements SubMenuItem {
 			System.out.print("전화번호: "); phoneNumber = scanner.nextLine();
 			
 			switch (select) {
-			case NOMAL:
+			case SubMenuItem.NOMAL:
 				PhoneInfo nomalInfo = new PhoneInfo(name, phoneNumber);
 				myPhoneInfo[numOfInfo++] = nomalInfo;
 				break;
 				
-			case SCHOOL:
+			case SubMenuItem.SCHOOL:
 				System.out.print("전공: "); major=scanner.nextLine();
 				System.out.print("학년: "); grade=scanner.nextInt();
 				PhoneSchoolInfo schoolInfo = new PhoneSchoolInfo(name, phoneNumber, major, grade);
 				myPhoneInfo[numOfInfo++] = schoolInfo;
 				break;
 				
-			case COMPANY: 
+			case SubMenuItem.COMPANY: 
 				System.out.print("회사명: "); companyName=scanner.nextLine();
 				PhoneCompanyInfo companyInfo = new PhoneCompanyInfo(name, phoneNumber, companyName);
 				myPhoneInfo[numOfInfo++] = companyInfo;

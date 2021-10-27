@@ -7,7 +7,7 @@ import project1.ver05.PhoneInfo; //반드시 이 부분을 수정해야 한다.
 import project1.ver05.MenuItem;
 
 //메인함수포함, 출발
-public class PhoneBookVer05 implements MenuItem  {
+public class PhoneBookVer05 {
 
 	public static void main(String[] args) {
 
@@ -21,19 +21,19 @@ public class PhoneBookVer05 implements MenuItem  {
 			int choice = scanner.nextInt();
 			
 			switch(choice) {
-			case INPUT:
+			case MenuItem.INPUT:
 				manager.dataInput(choice);
 				break;
-			case SEARCH:
+			case MenuItem.SEARCH:
 				manager.dataSearch();
 				break;
-			case DELETE:
+			case MenuItem.DELETE:
 				manager.dataDelete();
 				break;
-			case PRINT: 
+			case MenuItem.PRINT: 
 				manager.dataAllShow();
 				break;
-			case EXIT:
+			case MenuItem.EXIT:
 				System.out.println("프로그램이 종료되었습니다.");
 				return; 
 			}
