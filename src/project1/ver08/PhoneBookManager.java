@@ -151,7 +151,6 @@ public class PhoneBookManager {
 		}
 	}
 	
-	
 	public void savePhoneBook() { //컴퓨터 입장에서 저장하는 건 밖으로 빼내는것
 		try {
 			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/project1/ver08/PhoneBook.obj"));
