@@ -1,6 +1,7 @@
 package project1.ver07;
 
 import java.util.HashSet;
+import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -41,16 +42,19 @@ public class PhoneBookManager {
 			
 			switch (select) {
 			case SubMenuItem.NOMAL:
+
 				PhoneInfo nomalInfo = new PhoneInfo(name, phoneNumber);
 				
-				set.add(nomalInfo);
+				EqualsCheck(name); //중복되면 여기서 이전 데이터 삭제를 하고
+				set.add(nomalInfo); //새로운 데이터를 추가
 				break;
 				
 			case SubMenuItem.SCHOOL:
 				System.out.print("전공: "); major=scanner.nextLine();
 				System.out.print("학년: "); grade=scanner.nextInt();
-				
 				PhoneSchoolInfo schoolInfo = new PhoneSchoolInfo(name, phoneNumber, major, grade);
+				
+				EqualsCheck(name);
 				set.add(schoolInfo);
 				break;
 				
@@ -58,12 +62,47 @@ public class PhoneBookManager {
 				System.out.print("회사명: "); companyName=scanner.nextLine();
 				PhoneCompanyInfo companyInfo = new PhoneCompanyInfo(name, phoneNumber, companyName);
 				
+				EqualsCheck(name);
 				set.add(companyInfo);
 				break;
 				
 			}
 			System.out.println("데이터입력이 완료되었습니다.\n");
 		}
+
+	
+	private boolean EqualsCheck(String name) {
+		boolean isEqual = true;
+		Iterator<PhoneInfo> itr = set.iterator();
+		Scanner scanner = new Scanner(System.in);
+		
+		while(itr.hasNext()) {
+			PhoneInfo pi = itr.next();
+			if(name.equals(pi.name)) {
+				
+				while(true) {
+					System.out.println(name + " 정보는 이미 존재합니다.");
+					System.out.println("데이터를 덮어쓸까요? Y(y) / N(n)");
+					String overWrite = scanner.nextLine();
+					if("Y".equalsIgnoreCase(overWrite)) {
+						itr.remove();
+						//System.out.println("해당 데이터로 덮었습니다.");
+						break;
+					}
+					else if("N".equalsIgnoreCase(overWrite)) {
+						pi.showPhoneInfo();
+						break;
+					}
+					else {
+						System.out.println("똑바로 입력하세요");
+						
+					}
+				}	
+				isEqual = false;
+			}
+		}
+		return true;
+	}
 
 	public void  dataSearch() {
 		boolean isFind = false;
@@ -94,7 +133,7 @@ public class PhoneBookManager {
 		System.out.print("삭제할 이름 : ");
 		String deleteName = scanner.nextLine();
 		
-		boolean deleteIsFind = false;
+		boolean isDelete = false;
 		
 		Iterator<PhoneInfo> itr = set.iterator();
 		while(itr.hasNext()) {
@@ -102,17 +141,16 @@ public class PhoneBookManager {
 			
 			if(deleteName.equals(pi.name)) {
 				System.out.println(deleteName + " 데이터가 삭제 되었습니다.\n");
-				set.remove(pi);
-				deleteIsFind =true;
+				itr.remove();
+				isDelete =true;
 			}
 		}
-		if(deleteIsFind==false) {
+		if(isDelete==false) {
 			System.out.println("찾는 데이터가 없습니다.");
 		}
 	}
 	
-	public void  dataAllShow() {
-		
+	public void dataAllShow() {
 		for(PhoneInfo pi : set) {
 			pi.showPhoneInfo();
 		}

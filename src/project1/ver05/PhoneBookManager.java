@@ -19,7 +19,6 @@ public class PhoneBookManager {
 		String name, phoneNumber, major, companyName;
 		int grade;
 
-		while(true) {
 			System.out.println("데이터 입력을 시작합니다.");
 			
 			System.out.println("1.일반  2.동창  3.회사");
@@ -53,9 +52,7 @@ public class PhoneBookManager {
 				break;
 			}
 			System.out.println("데이터입력이 완료되었습니다.\n");
-			break;
 		}
-	}
 	
 	public void  dataSearch() {
 		Scanner scanner = new Scanner(System.in);

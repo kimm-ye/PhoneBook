@@ -38,7 +38,6 @@ public class PhoneInfo {
 	@Override
 	public int hashCode() {
 		int nameHashCode = this.name.hashCode(); //hash코드는 주소값이니까 정수형으로 반환
-		//int phoneNumHashCode = this.phoneNumber.hashCode();
 		return nameHashCode;
 	}
 	

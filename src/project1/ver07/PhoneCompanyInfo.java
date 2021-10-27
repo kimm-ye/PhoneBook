@@ -10,7 +10,7 @@ public class PhoneCompanyInfo extends PhoneInfo{
 	
 	@Override
 	public void showPhoneInfo() {
-		System.out.println("======회사 사람들 전체 정보======");
+		System.out.println("======회사 사람 정보======");
 		super.showPhoneInfo();
 		System.out.println("회사명: " +companyName);
 	}
