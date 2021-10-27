@@ -1,14 +1,14 @@
-package project1.ver07;
+package project1.ver08;
 
 import java.util.HashSet;
 import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.Scanner;
 
-import project1.ver07.SubMenuItem;
-import project1.ver07.PhoneCompanyInfo;
-import project1.ver07.PhoneInfo;
-import project1.ver07.PhoneSchoolInfo;
+import project1.ver08.SubMenuItem;
+import project1.ver08.PhoneCompanyInfo;
+import project1.ver08.PhoneInfo;
+import project1.ver08.PhoneSchoolInfo;
 
 public class PhoneBookManager {
 
@@ -30,7 +30,7 @@ public class PhoneBookManager {
 		String name, phoneNumber, major, companyName;
 		int grade;
 		
-			System.out.println("데이터 입력을 시작합니다.");
+			System.out.println("\n데이터 입력을 시작합니다.");
 			
 			System.out.println("1.일반  2.동창  3.회사");
 			System.out.print("메뉴를 선택하세요 >>"); 
@@ -105,7 +105,7 @@ public class PhoneBookManager {
 	public void  dataSearch() {
 		boolean isFind = false;
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("데이터 검색을 시작합니다.");
+		System.out.println("\n데이터 검색을 시작합니다.");
 		System.out.print("검색할 이름 : ");
 		String searchName = scanner.nextLine();
 		
@@ -114,8 +114,8 @@ public class PhoneBookManager {
 			PhoneInfo pi = itr.next();
 			
 			if(searchName.equals(pi.name)) {
-				pi.showPhoneInfo();
-				System.out.println("데이터 검색이 완료되었습니다.\n");
+				System.out.println("\n데이터 검색이 완료되었습니다.");
+				System.out.println(pi +"\n");
 				isFind = true;
 			}
 		}
@@ -127,7 +127,7 @@ public class PhoneBookManager {
 	
 	public void  dataDelete() {
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("데이터 삭제를 시작합니다.");
+		System.out.println("\n데이터 삭제를 시작합니다.");
 		System.out.print("삭제할 이름 : ");
 		String deleteName = scanner.nextLine();
 		
@@ -144,7 +144,7 @@ public class PhoneBookManager {
 			}
 		}
 		if(isDelete==false) {
-			System.out.println("찾는 데이터가 없습니다.\\n");
+			System.out.println("찾는 데이터가 없습니다.\n");
 		}
 	}
 	

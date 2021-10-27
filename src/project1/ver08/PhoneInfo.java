@@ -1,4 +1,4 @@
-package project1.ver07;
+package project1.ver08;
 
 import java.util.Scanner;
 
@@ -29,6 +29,10 @@ public class PhoneInfo {
 		System.out.print("선택 : ");
 	}
 	
+	@Override
+	public String toString() {
+		return "이름 : " + name + " / " + "전화번호 : " + phoneNumber;
+	}
 	
 	@Override
 	public int hashCode() {
