@@ -22,7 +22,6 @@ public class PhoneBookManager implements Serializable{ //Serializable 인터페�
 	private int numOfInfo;
 	
 	HashSet<PhoneInfo> set = new HashSet<PhoneInfo>();
-
 	
 	public PhoneBookManager(int num) {
 		myPhoneInfo = new PhoneInfo[num];
@@ -32,7 +31,7 @@ public class PhoneBookManager implements Serializable{ //Serializable 인터페�
 		readPhoneBook();
 	}
 	
-	
+	//데이터입력
 	public void dataInput(int choice) {
 		
 		PhoneInfo phoneInfo = null;
@@ -44,7 +43,7 @@ public class PhoneBookManager implements Serializable{ //Serializable 인터페�
 		
 			System.out.println("\n데이터 입력을 시작합니다.");
 			
-			System.out.println("1.일반  2.동창  3.회사");
+			System.out.println("1.일반  2.동창   3.회사");
 			System.out.print("메뉴를 선택하세요 >>"); 
 			int select = scanner.nextInt();
 						
@@ -100,6 +99,7 @@ public class PhoneBookManager implements Serializable{ //Serializable 인터페�
 			}
 		}
 	
+	//데이터 검색
 	public void  dataSearch() {
 		boolean isFind = false;
 		Scanner scanner = new Scanner(System.in);
@@ -122,6 +122,7 @@ public class PhoneBookManager implements Serializable{ //Serializable 인터페�
 		}
 	}	
 	
+	//데이터 삭제
 	public void  dataDelete() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("\n데이터 삭제를 시작합니다.");
@@ -145,6 +146,7 @@ public class PhoneBookManager implements Serializable{ //Serializable 인터페�
 		}
 	}
 	
+	//전체데이터조회
 	public void dataAllShow() {
 		System.out.println("\n ** 전체정보가 출력되었습니다.**\n ");
 		for(PhoneInfo pi : set) {
@@ -152,6 +154,7 @@ public class PhoneBookManager implements Serializable{ //Serializable 인터페�
 		}
 	}
 	
+	//파일 세이브
 	public void savePhoneBook () { //컴퓨터 입장에서 저장하는 건 밖으로 빼내는것
 		try {
 			System.out.println("\n입력한 데이터를 모두 저장하였습니다.");
@@ -169,6 +172,7 @@ public class PhoneBookManager implements Serializable{ //Serializable 인터페�
 		}
 	}
 	
+	//파일 리드
 	public void readPhoneBook() { //컴퓨터 입장에서 불러오는 건 안으로 넣는 것
 		try {
 			ObjectInputStream in = new ObjectInputStream(new FileInputStream("src/project1/ver08/PhoneBook.obj"));
