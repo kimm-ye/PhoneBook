@@ -52,10 +52,8 @@ public class PhoneBookManager {
 			System.out.print("이름: "); name = scanner.nextLine();
 			System.out.print("전화번호: "); phoneNumber = scanner.nextLine();
 			
-			
 			switch (select) {
 			case SubMenuItem.NOMAL:
-
 				phoneInfo= new PhoneInfo(name, phoneNumber);
 				
 				equalCheck = set.add(phoneInfo); //set을 쓰면 중복일때 false로 반환되기 때문에 boolean으로 비교한다.
@@ -155,7 +153,7 @@ public class PhoneBookManager {
 	//파일 세이브
 	public void savePhoneBook () { //컴퓨터 입장에서 저장하는 건 밖으로 빼내는것
 		try {
-			System.out.println("\n입력한 데이터를 모두 저장하였습니다.");
+			System.out.println("\n입력한 데이터를 obj 파일로 저장하였습니다.");
 			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/project1/ver08/PhoneBook.obj"));
 			
 			for(PhoneInfo pi : set) { //PhoneInfo를 받기 때문에 PhoneInfo에도 Serializable해야함
@@ -215,7 +213,7 @@ public class PhoneBookManager {
 				
 				if(as.isAlive()) { //자동저장을 꺼야하는데 살아있는 쓰레드가 있다면
 					as.interrupt(); //꺼줌
-					System.out.println("자동저장이 종료되었습니다.");
+					System.out.println("자동저장을 종료합니다.");
 				}
 				else {
 					System.out.println("자동저장이 실행되고 있지 않습니다.");

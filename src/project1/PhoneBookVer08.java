@@ -47,7 +47,7 @@ public class PhoneBookVer08  {
 					break;
 				case MenuItem.EXIT:
 					manager.savePhoneBook();
-					System.out.println("프로그램이 종료되었습니다.");
+					System.out.println("프로그램을 종료합니다.");
 					return; //return은 메인함수의 종료
 				}
 			}
