@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import project1.ver08.PhoneBookManager; //반드시 이 부분을 수정해야 한다.
 import project1.ver08.PhoneInfo; //반드시 이 부분을 수정해야 한다.
+import project1.ver08.AutoSaverT;
 import project1.ver08.MenuItem;
 import project1.ver06.MenuSelectException;
 
@@ -16,6 +17,7 @@ public class PhoneBookVer08  {
 
 		Scanner scanner = new Scanner(System.in);
 		PhoneBookManager manager = new PhoneBookManager(100);
+		AutoSaverT as = new AutoSaverT(manager);
 		
 		//메뉴호출
 		while(true) {
@@ -39,6 +41,9 @@ public class PhoneBookVer08  {
 					break;
 				case MenuItem.PRINT: 
 					manager.dataAllShow();
+					break;
+				case MenuItem.SAVE_OPTION:
+					manager.dataSaveOption(as);
 					break;
 				case MenuItem.EXIT:
 					manager.savePhoneBook();

@@ -16,19 +16,20 @@ import project1.ver08.PhoneCompanyInfo;
 import project1.ver08.PhoneInfo;
 import project1.ver08.PhoneSchoolInfo;
 
-public class PhoneBookManager implements Serializable{ //Serializable 인터페이스를 구현하면 JVM에서 해당 객체는 저장하거나 다른 서버로 전송할 수 있도록 해준다
-
+public class PhoneBookManager { 
+	
 	private PhoneInfo[] myPhoneInfo;
 	private int numOfInfo;
 	
 	HashSet<PhoneInfo> set = new HashSet<PhoneInfo>();
+	Scanner scanner = new Scanner(System.in);
+	
 	
 	public PhoneBookManager(int num) {
-		myPhoneInfo = new PhoneInfo[num];
-		numOfInfo = 0;
+		myPhoneInfo = new PhoneInfo[100];
+		numOfInfo = 0; //처음 저장된 인원은 0명이므로
 		
-		//read는 메인에서 manager부르자마자 바로 호출되야 하니까
-		readPhoneBook();
+		readPhoneBook(); //read는 메인에서 manager부르자마자 바로 호출되야 하니까
 	}
 	
 	//데이터입력
@@ -39,7 +40,6 @@ public class PhoneBookManager implements Serializable{ //Serializable 인터페�
 		int grade;
 		boolean equalCheck = false;
 
-		Scanner scanner = new Scanner(System.in);
 		
 			System.out.println("\n데이터 입력을 시작합니다.");
 			
@@ -102,7 +102,6 @@ public class PhoneBookManager implements Serializable{ //Serializable 인터페�
 	//데이터 검색
 	public void  dataSearch() {
 		boolean isFind = false;
-		Scanner scanner = new Scanner(System.in);
 		System.out.println("\n데이터 검색을 시작합니다.");
 		System.out.print("검색할 이름 : ");
 		String searchName = scanner.nextLine();
@@ -124,7 +123,6 @@ public class PhoneBookManager implements Serializable{ //Serializable 인터페�
 	
 	//데이터 삭제
 	public void  dataDelete() {
-		Scanner scanner = new Scanner(System.in);
 		System.out.println("\n데이터 삭제를 시작합니다.");
 		System.out.print("삭제할 이름 : ");
 		String deleteName = scanner.nextLine();
@@ -136,7 +134,7 @@ public class PhoneBookManager implements Serializable{ //Serializable 인터페�
 			PhoneInfo pi = itr.next();
 			
 			if(deleteName.equals(pi.name)) {
-				System.out.println(deleteName + " 데이터가 삭제 되었습니다.\n");
+				System.out.println(deleteName + " 데이터가 삭제 되었습니다.");
 				itr.remove();
 				isDelete =true;
 			}
@@ -148,7 +146,7 @@ public class PhoneBookManager implements Serializable{ //Serializable 인터페�
 	
 	//전체데이터조회
 	public void dataAllShow() {
-		System.out.println("\n ** 전체정보가 출력되었습니다.**\n ");
+		System.out.println("\n** 전체정보가 출력되었습니다.**\n ");
 		for(PhoneInfo pi : set) {
 			pi.showPhoneInfo();
 		}
@@ -160,7 +158,7 @@ public class PhoneBookManager implements Serializable{ //Serializable 인터페�
 			System.out.println("\n입력한 데이터를 모두 저장하였습니다.");
 			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/project1/ver08/PhoneBook.obj"));
 			
-			for(PhoneInfo pi : set) {
+			for(PhoneInfo pi : set) { //PhoneInfo를 받기 때문에 PhoneInfo에도 Serializable해야함
 				out.writeObject(pi);
 			}
 			out.close();
@@ -192,8 +190,54 @@ public class PhoneBookManager implements Serializable{ //Serializable 인터페�
 		}
 		System.out.println("주소록 복원 완료");
 	}
-}
 
+	//자동저장
+	public void dataSaveOption(AutoSaverT as) {
+		//AutoSaverT as = new AutoSaverT();
+		
+		System.out.println("\n저장옵션을 선택하세요.");
+		System.out.println("1.자동저장On  2.자동저장OFF");
+		System.out.print("메뉴를 선택하세요 >>"); 
+		int isAutoSave = scanner.nextInt();
+		
+		try {
+			if(isAutoSave == 1) { //자동저장on
+				if(!as.isAlive()) { //살아있는 쓰레드가 없다면
+					System.out.println("자동저장을 시작합니다.");
+					as.setDaemon(true); //setDeamon이 있어야 데몬쓰레드로 사용
+					as.start();
+				}
+				else { //살아있는 쓰레드가 있다면
+					System.out.println("[경고] 이미 자동저장이 실행중입니다.");
+				}
+			}
+			else if(isAutoSave ==2) { //자동저장off
+				
+				if(as.isAlive()) { //자동저장을 꺼야하는데 살아있는 쓰레드가 있다면
+					as.interrupt(); //꺼줌
+					System.out.println("자동저장이 종료되었습니다.");
+				}
+				else {
+					System.out.println("자동저장이 실행되고 있지 않습니다.");
+				}
+			}
+			else if(isAutoSave ==5) {
+				return;
+			}
+		
+		}
+		catch (InputMismatchException e) {
+			System.out.println("\n잘못 입력했습니다.");
+			e.printStackTrace();
+		}
+		catch (Exception e) {
+			System.out.println("\n 예외발생");
+			e.printStackTrace();
+		}
+	}
+	
+	
+}//end of manager
 
 
 

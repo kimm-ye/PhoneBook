@@ -4,7 +4,8 @@ import java.io.Serializable;
 import java.util.Scanner;
 
 //데이터, 매니저 작성, 모든기능, 상속 넣기
-public class PhoneInfo implements Serializable {
+public class PhoneInfo implements Serializable { //Serializable 인터페이스를 구현하면 JVM에서 해당 객체는 저장하거나 다른 서버로 전송할 수 있도록 해준다
+
 	
 	String name; //이름
 	String phoneNumber ; //전화번호
@@ -27,8 +28,9 @@ public class PhoneInfo implements Serializable {
 		System.out.println("2. 데이터 검색");
 		System.out.println("3. 데이터 삭제");
 		System.out.println("4. 주소록 출력");
-		System.out.println("5. 프로그램종료");
-		System.out.print("선택 : ");
+		System.out.println("5. 데이터 저장 옵션");
+		System.out.println("6. 프로그램 종료");
+		System.out.print("메뉴를 선택하세요 >>"); 
 	}
 	
 	@Override
