@@ -129,29 +129,32 @@ public class PhoneBookManager {
 		String deleteName = scanner.nextLine();
 		
 		boolean isDelete = false;
-		
 		Iterator<PhoneInfo> itr = set.iterator();
 		while(itr.hasNext()) {
 			PhoneInfo pi = itr.next();
-			
 			if(deleteName.equals(pi.name)) {
-				System.out.println("\n [" +deleteName + "] 데이터가 삭제 되었습니다.");
+				System.out.println("\n[" +deleteName + "] 데이터가 삭제 되었습니다.");
 				itr.remove();
 				isDelete =true;
 			}
 		}
 		if(isDelete==false) {
-			System.out.println("찾는 데이터가 없습니다.\n");
+			System.out.println("찾는 데이터가 없습니다.");
 		}
 	}
 	
 	//전체데이터조회
 	public void dataAllShow() {
-		System.out.println("\n 전체정보가 출력되었습니다.\n ");
-		for(PhoneInfo pi : set) {
-			pi.showPhoneInfo();
+		if(numOfInfo != 0) {
+			System.out.println("\n전체정보가 출력되었습니다.\n ");
+			for(PhoneInfo pi : set) {
+				pi.showPhoneInfo();
+			}
+			System.out.println("====================");
 		}
-		System.out.println("====================");
+		else {
+			System.out.println("\n출력할 정보가 없습니다.");
+		}
 	}
 	
 	//파일 세이브
@@ -164,7 +167,6 @@ public class PhoneBookManager {
 				out.writeObject(pi);
 			}
 			out.close();
-			
 		}
 		catch (Exception e) {
 			System.out.println("직렬화 예외발생");
