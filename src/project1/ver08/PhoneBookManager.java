@@ -42,15 +42,16 @@ public class PhoneBookManager {
 
 		
 			System.out.println("\n데이터 입력을 시작합니다.");
-			
-			System.out.println("1.일반  2.동창   3.회사");
-			System.out.print("메뉴를 선택하세요 >>"); 
+			System.out.println("저장할 공간을 선택하세요");
+			System.out.println("-------------------------");
+			System.out.println("1.일반  2.동창  3.회사");
+			System.out.print(">>"); 
 			int select = scanner.nextInt();
 						
 			scanner.nextLine(); //버퍼문제로 삽입
 			
-			System.out.print("이름: "); name = scanner.nextLine();
-			System.out.print("전화번호: "); phoneNumber = scanner.nextLine();
+			System.out.print("이름 : "); name = scanner.nextLine();
+			System.out.print("번호 : "); phoneNumber = scanner.nextLine();
 			
 			switch (select) {
 			case SubMenuItem.NOMAL:
@@ -60,15 +61,15 @@ public class PhoneBookManager {
 				break;
 				
 			case SubMenuItem.SCHOOL:
-				System.out.print("전공: "); major=scanner.nextLine();
-				System.out.print("학년: "); grade=scanner.nextInt();
+				System.out.print("전공 : "); major=scanner.nextLine();
+				System.out.print("학년 : "); grade=scanner.nextInt();
 				phoneInfo = new PhoneSchoolInfo(name, phoneNumber, major, grade);
 				
 				equalCheck = set.add(phoneInfo);
 				break;
 				
 			case SubMenuItem.COMPANY: 
-				System.out.print("회사명: "); companyName=scanner.nextLine();
+				System.out.print("회사명 : "); companyName=scanner.nextLine();
 				phoneInfo = new PhoneCompanyInfo(name, phoneNumber, companyName);
 				
 				equalCheck = set.add(phoneInfo);
@@ -76,24 +77,25 @@ public class PhoneBookManager {
 			}
 			
 			if(equalCheck==false) {
-				System.out.println(name + " 정보는 이미 존재합니다.");
+				System.out.println("\n앗! [" +name + "]님의 정보는 이미 존재합니다.");
 				System.out.println("데이터를 덮어쓸까요? Y(y) / N(n)");
 				String overWrite = scanner.nextLine();
 				
-				if("Y".equalsIgnoreCase(overWrite)) {
+				if(overWrite.equalsIgnoreCase("Y")) {
 					set.remove(phoneInfo);
 					set.add(phoneInfo);
 					System.out.println("해당 데이터로 덮었습니다.\n");
 				}
-				else if("N".equalsIgnoreCase(overWrite)) {
-					System.out.println(phoneInfo +"\n");
+				else if(overWrite.equalsIgnoreCase("N")) {
+					Iterator<PhoneInfo> itr = set.iterator();
+					System.out.println(itr.next().toString());
 				}
 				else {
 					System.out.println(" Y(y) / N(n) 으로  입력하세요");
 				}
 			}
 			else if(equalCheck==true) {
-				System.out.println("데이터입력이 완료되었습니다.");
+				System.out.println("\n데이터입력이 완료되었습니다.");
 			}
 		}
 	
@@ -111,11 +113,12 @@ public class PhoneBookManager {
 			if(searchName.equals(pi.name)) {
 				System.out.println("\n데이터 검색이 완료되었습니다.");
 				pi.showPhoneInfo();
+				System.out.println("====================");
 				isFind = true;
 			}
 		}
 		if(isFind == false) {
-			System.out.println("찾는 데이터가 없습니다.\n");
+			System.out.println("찾는 데이터가 없습니다.");
 		}
 	}	
 	
@@ -132,7 +135,7 @@ public class PhoneBookManager {
 			PhoneInfo pi = itr.next();
 			
 			if(deleteName.equals(pi.name)) {
-				System.out.println(deleteName + " 데이터가 삭제 되었습니다.");
+				System.out.println("\n [" +deleteName + "] 데이터가 삭제 되었습니다.");
 				itr.remove();
 				isDelete =true;
 			}
@@ -144,10 +147,11 @@ public class PhoneBookManager {
 	
 	//전체데이터조회
 	public void dataAllShow() {
-		System.out.println("\n** 전체정보가 출력되었습니다.**\n ");
+		System.out.println("\n 전체정보가 출력되었습니다.\n ");
 		for(PhoneInfo pi : set) {
 			pi.showPhoneInfo();
 		}
+		System.out.println("====================");
 	}
 	
 	//파일 세이브
@@ -195,34 +199,32 @@ public class PhoneBookManager {
 		
 		System.out.println("\n저장옵션을 선택하세요.");
 		System.out.println("1.자동저장On  2.자동저장OFF");
-		System.out.print("메뉴를 선택하세요 >>"); 
+		System.out.print(">>"); 
 		int isAutoSave = scanner.nextInt();
 		
 		try {
 			if(isAutoSave == 1) { //자동저장on
 				if(!as.isAlive()) { //살아있는 쓰레드가 없다면
-					System.out.println("자동저장을 시작합니다.");
+					System.out.println("\n자동저장을 시작합니다.");
 					as.setDaemon(true); //setDeamon이 있어야 데몬쓰레드로 사용
 					as.start();
 				}
 				else { //살아있는 쓰레드가 있다면
-					System.out.println("[경고] 이미 자동저장이 실행중입니다.");
+					System.out.println("※경고※ 이미 자동저장이 실행중입니다.");
 				}
 			}
 			else if(isAutoSave ==2) { //자동저장off
-				
 				if(as.isAlive()) { //자동저장을 꺼야하는데 살아있는 쓰레드가 있다면
 					as.interrupt(); //꺼줌
-					System.out.println("자동저장을 종료합니다.");
+					System.out.println("\n자동저장을 종료합니다.");
 				}
 				else {
-					System.out.println("자동저장이 실행되고 있지 않습니다.");
+					System.out.println("\n※경고※  현재 자동저장이 실행되고 있지 않습니다.");
 				}
 			}
 			else if(isAutoSave ==5) {
 				return;
 			}
-		
 		}
 		catch (InputMismatchException e) {
 			System.out.println("\n잘못 입력했습니다.");

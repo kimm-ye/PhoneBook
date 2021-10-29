@@ -2,6 +2,7 @@ package project1;
 
 import java.util.Scanner;
 
+import project1.ver09.IConnectImpl;
 import project1.ver09.PhoneBookManager;
 import project1.ver09.PhoneInfo; //반드시 이 부분을 수정해야 한다.
 
@@ -35,11 +36,6 @@ public class PhoneBookVer09  {
 				System.out.println("프로그램이 종료되었습니다.");
 				return; 
 			}
-			
 		}
-		
-		
 	}
-	
-
 }

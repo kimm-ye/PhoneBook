@@ -33,6 +33,9 @@ public class PhoneBookManager extends IConnectImpl{
 		catch (Exception e) {
 			e.printStackTrace();
 		}
+//		finally {
+//			close(); //여기서 close해버리면 실행할때마다 다시 새로 접속해야한다.
+//		}
 	}
 	
 	public void  dataSearch() {
@@ -45,7 +48,7 @@ public class PhoneBookManager extends IConnectImpl{
 					+ " FROM phonebook_tb "
 					+ " WHERE name LIKE '%" + searchName + "%' ";
 			
-			ResultSet rs = stmt.executeQuery(sql);
+			rs = stmt.executeQuery(sql);
 			
 			while(rs.next()) {
 				int idx = rs.getInt(1);
@@ -73,9 +76,6 @@ public class PhoneBookManager extends IConnectImpl{
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-		}
-		finally {
-			close();
 		}
 	}
 	

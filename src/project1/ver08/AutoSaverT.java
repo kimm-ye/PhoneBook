@@ -25,8 +25,8 @@ public class AutoSaverT extends Thread { //thread 사용을 위해
 				} 
 				out.close();
 				
-				sleep(5000); //5초마다 자동저장
 				System.out.println("\n5초마다 자동저장 중입니다.");
+				sleep(5000); //5초마다 자동저장
 			}
 		}
 		catch (InterruptedException e) {
