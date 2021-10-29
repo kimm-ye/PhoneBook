@@ -114,14 +114,14 @@ public class PhoneBookManager {
 			PhoneInfo pi = itr.next();
 			
 			if(searchName.equals(pi.name)) {
-				System.out.println("\n데이터 검색이 완료되었습니다.");
+				System.out.println("\n[" + searchName + "] 데이터를 찾았습니다.");
 				pi.showPhoneInfo();
 				System.out.println("====================");
 				isFind = true;
 			}
 		}
 		if(isFind == false) {
-			System.out.println(searchName + " 데이터는 없습니다.");
+			System.out.println("\n[" + searchName+ "] 데이터가 없습니다.");
 		}
 	}	
 	
@@ -142,7 +142,7 @@ public class PhoneBookManager {
 			}
 		}
 		if(isDelete==false) {
-			System.out.println("\n찾는 데이터가 없습니다.");
+			System.out.println("\n[" + deleteName +"] 데이터가 없습니다.");
 		}
 	}
 	

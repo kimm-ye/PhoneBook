@@ -32,7 +32,7 @@ public class PhoneInfo {
 	}
 	
 	public static void printMenu() {
-		System.out.println("아래 메뉴를 선택하세요");
+		System.out.println("\n아래 메뉴를 선택하세요");
 		System.out.println("1. 데이터 입력");
 		System.out.println("2. 데이터 검색");
 		System.out.println("3. 데이터 삭제");
