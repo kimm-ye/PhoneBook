@@ -43,7 +43,13 @@ public class PhoneBookVer08  {
 					manager.dataAllShow();
 					break;
 				case MenuItem.SAVE_OPTION:
-					manager.dataSaveOption(as);
+					if(!as.isAlive()) {
+						as = new AutoSaverT(manager);
+						manager.dataSaveOption(as);
+					}
+					else if(as.isAlive()) {
+						manager.dataSaveOption(as);
+					}
 					break;
 				case MenuItem.EXIT:
 					manager.savePhoneBook();

@@ -24,7 +24,6 @@ public class PhoneBookManager {
 	HashSet<PhoneInfo> set = new HashSet<PhoneInfo>();
 	Scanner scanner = new Scanner(System.in);
 	
-	
 	public PhoneBookManager(int num) {
 		myPhoneInfo = new PhoneInfo[100];
 		numOfInfo = 0; //처음 저장된 인원은 0명이므로
@@ -35,12 +34,10 @@ public class PhoneBookManager {
 	//데이터입력
 	public void dataInput(int choice) {
 		
-		PhoneInfo phoneInfo = null;
+		PhoneInfo phoneInfo = null; //중복체크를 하기 위해 phoneinfo타입 객체를 하나 생성한다.
 		String name, phoneNumber, major, companyName;
 		int grade;
-		boolean equalCheck = false;
 
-		
 			System.out.println("\n데이터 입력을 시작합니다.");
 			System.out.println("저장할 공간을 선택하세요");
 			System.out.println("-------------------------");
@@ -55,9 +52,9 @@ public class PhoneBookManager {
 			
 			switch (select) {
 			case SubMenuItem.NOMAL:
-				phoneInfo= new PhoneInfo(name, phoneNumber);
+				phoneInfo= new PhoneInfo(name, phoneNumber); 
 				
-				equalCheck = set.add(phoneInfo); //set을 쓰면 중복일때 false로 반환되기 때문에 boolean으로 비교한다.
+				//equalCheck = set.add(phoneInfo); //set을 쓰면 중복일때 false로 반환되기 때문에 boolean으로 비교한다.
 				break;
 				
 			case SubMenuItem.SCHOOL:
@@ -65,16 +62,18 @@ public class PhoneBookManager {
 				System.out.print("학년 : "); grade=scanner.nextInt();
 				phoneInfo = new PhoneSchoolInfo(name, phoneNumber, major, grade);
 				
-				equalCheck = set.add(phoneInfo);
+				//equalCheck = set.add(phoneInfo); //중복이므로 하단으로 빼낸다
 				break;
 				
 			case SubMenuItem.COMPANY: 
 				System.out.print("회사명 : "); companyName=scanner.nextLine();
 				phoneInfo = new PhoneCompanyInfo(name, phoneNumber, companyName);
 				
-				equalCheck = set.add(phoneInfo);
+				//equalCheck = set.add(phoneInfo);
 				break;
 			}
+			
+			boolean equalCheck = set.add(phoneInfo); //중복으로 여기로 빼냄
 			
 			if(equalCheck==false) {
 				System.out.println("\n앗! [" +name + "]님의 정보는 이미 존재합니다.");
@@ -122,7 +121,7 @@ public class PhoneBookManager {
 			}
 		}
 		if(isFind == false) {
-			System.out.println("찾는 데이터가 없습니다.");
+			System.out.println(searchName + " 데이터는 없습니다.");
 		}
 	}	
 	
@@ -196,7 +195,6 @@ public class PhoneBookManager {
 
 	//자동저장
 	public void dataSaveOption(AutoSaverT as) {
-		//AutoSaverT as = new AutoSaverT();
 		
 		System.out.println("\n저장옵션을 선택하세요.");
 		System.out.println("1.자동저장On  2.자동저장OFF");
@@ -206,9 +204,9 @@ public class PhoneBookManager {
 		try {
 			if(isAutoSave == 1) { //자동저장on
 				if(!as.isAlive()) { //살아있는 쓰레드가 없다면
-					System.out.println("\n자동저장을 시작합니다.");
 					as.setDaemon(true); //setDeamon이 있어야 데몬쓰레드로 사용
 					as.start();
+					System.out.println("\n자동저장을 시작합니다.");
 				}
 				else { //살아있는 쓰레드가 있다면
 					System.out.println("※경고※ 이미 자동저장이 실행중입니다.");
