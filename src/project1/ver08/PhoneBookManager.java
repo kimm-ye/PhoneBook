@@ -80,7 +80,6 @@ public class PhoneBookManager {
 				System.out.println("\n앗! [" +name + "]님의 정보는 이미 존재합니다.");
 				System.out.println("데이터를 덮어쓸까요? Y(y) / N(n)");
 				String overWrite = scanner.nextLine();
-				
 				if(overWrite.equalsIgnoreCase("Y")) {
 					set.remove(phoneInfo);
 					set.add(phoneInfo);
@@ -88,7 +87,12 @@ public class PhoneBookManager {
 				}
 				else if(overWrite.equalsIgnoreCase("N")) {
 					Iterator<PhoneInfo> itr = set.iterator();
-					System.out.println(itr.next().toString());
+					while(itr.hasNext()) {
+						PhoneInfo pi = itr.next();
+						if(name.equals(pi.name)) {
+							System.out.println(pi.toString()); //만약에 덮어쓰지 않으면 이전 데이터 찾아서 데이터출력
+						}
+					}
 				}
 				else {
 					System.out.println(" Y(y) / N(n) 으로  입력하세요");
@@ -216,7 +220,7 @@ public class PhoneBookManager {
 					System.out.println("\n자동저장을 종료합니다.");
 				}
 				else {
-					System.out.println("\n※경고※  현재 자동저장이 실행되고 있지 않습니다.");
+					System.out.println("\n※경고※ 현재 자동저장이 실행되고 있지 않습니다.");
 				}
 			}
 			else if(isAutoSave ==5) {

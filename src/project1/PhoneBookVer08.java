@@ -56,7 +56,7 @@ public class PhoneBookVer08  {
 			}
 			catch (InputMismatchException e) {
 				scanner.nextLine();
-				System.out.println("숫자로만 입력해야 합니다.\n");
+				System.out.println("\n숫자로만 입력해야 합니다.");
 			}
 			catch (NullPointerException e) {
 				System.out.println("검색결과가 없습니다.");
