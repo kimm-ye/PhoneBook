@@ -139,22 +139,17 @@ public class PhoneBookManager {
 			}
 		}
 		if(isDelete==false) {
-			System.out.println("찾는 데이터가 없습니다.");
+			System.out.println("\n찾는 데이터가 없습니다.");
 		}
 	}
 	
 	//전체데이터조회
 	public void dataAllShow() {
-		if(numOfInfo != 0) {
-			System.out.println("\n전체정보가 출력되었습니다.\n ");
-			for(PhoneInfo pi : set) {
-				pi.showPhoneInfo();
-			}
-			System.out.println("====================");
+		System.out.println("\n전체정보가 출력되었습니다.\n ");
+		for(PhoneInfo pi : set) {
+			pi.showPhoneInfo();
 		}
-		else {
-			System.out.println("\n출력할 정보가 없습니다.");
-		}
+		System.out.println("====================");
 	}
 	
 	//파일 세이브
