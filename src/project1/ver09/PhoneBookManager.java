@@ -8,6 +8,7 @@ public class PhoneBookManager extends IConnectImpl{
 
 	private PhoneInfo[] myPhoneInfo;
 	private int numOfInfo;
+
 	
 	public PhoneBookManager(int num) {
 		super("kosmo", "1234");
@@ -27,26 +28,20 @@ public class PhoneBookManager extends IConnectImpl{
 			psmt.setString(2, scanValue("전화번호"));
 			psmt.setString(3, scanValue("생년월일"));
 			
-			System.out.println(psmt.executeUpdate() + "행이 입력되었습니다.");
-			
+			System.out.println(psmt.executeUpdate() + "행이 입력되었습니다.\n");
 		}
 		catch (Exception e) {
-			System.out.println("오류발생");
 			e.printStackTrace();
-		}
-		finally {
-			close();
 		}
 	}
 	
 	public void  dataSearch() {
-		
 		try {
 			Statement stmt = con.createStatement();
 			String searchName = scanValue("검색할 이름");
 			
 			String sql = "SELECT idx, name, p_Num, "
-					+ "	to_char(birth, 'yyyy-mm-dd')"
+					+ "	to_char(birth, 'yyyy-mm-dd') birth "
 					+ " FROM phonebook_tb "
 					+ " WHERE name LIKE '%" + searchName + "%' ";
 			
@@ -62,13 +57,9 @@ public class PhoneBookManager extends IConnectImpl{
 				System.out.printf(" No.%d%n 이름:%s%n 전화번호:%s%n 생년월일:%s%n", idx, name, p_Num, birth);
 				System.out.println();
 			}
-			
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-		}
-		finally {
-			close();
 		}
 	}
 	
@@ -93,7 +84,7 @@ public class PhoneBookManager extends IConnectImpl{
 			Statement stmt = con.createStatement();
 			
 			String sql = "SELECT idx, name, p_Num, "
-					+ "	to_char(birth, 'yyyy-mm-dd') "
+					+ "	to_char(birth, 'yyyy-mm-dd') bitrh "
 					+ " FROM phonebook_tb "
 					+ " ORDER BY idx ASC ";
 			
@@ -108,13 +99,9 @@ public class PhoneBookManager extends IConnectImpl{
 				System.out.printf(" No.%d%n 이름:%s%n 전화번호:%s%n 생년월일:%s%n", idx, name, p_Num, birth);
 				System.out.println();
 			}
-			
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-		}
-		finally {
-			close();
 		}
 	}
 	

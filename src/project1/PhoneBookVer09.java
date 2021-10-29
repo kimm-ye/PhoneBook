@@ -6,7 +6,7 @@ import project1.ver09.PhoneBookManager;
 import project1.ver09.PhoneInfo; //반드시 이 부분을 수정해야 한다.
 
 //메인함수포함, 출발
-public class PhoneBookVer09   {
+public class PhoneBookVer09  {
 
 	public static void main(String[] args) {
 

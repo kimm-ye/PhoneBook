@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
 
 public class IConnectImpl implements IConnect {
@@ -12,7 +13,7 @@ public class IConnectImpl implements IConnect {
 	public Connection con; //특정 데이터 원본과 연결된 커넥션으로 SQL문장을 정의하고 실행시킬수 있는 statement객체를 생성할때 사용
 	public PreparedStatement psmt; //sql문장을 미리 컴파일러 할 수 있도록 개선
 	public ResultSet rs; 
-	
+	public Statement stmt;
 	
 	public IConnectImpl() {
 		System.out.println("IConnectImpl 기본생성자 호출");	
@@ -65,6 +66,7 @@ public class IConnectImpl implements IConnect {
 			if(con!=null)con.close();
 			if(psmt != null)psmt.close();
 			if(rs!=null)rs.close();
+			if(stmt!=null)stmt.close();
 			System.out.println("자원반납완료");
 		}
 		catch (Exception e) {
