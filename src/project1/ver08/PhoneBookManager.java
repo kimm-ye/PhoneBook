@@ -19,14 +19,12 @@ import project1.ver08.PhoneSchoolInfo;
 public class PhoneBookManager { 
 	
 	private PhoneInfo[] myPhoneInfo;
-	private int numOfInfo;
 	
 	HashSet<PhoneInfo> set = new HashSet<PhoneInfo>();
 	Scanner scanner = new Scanner(System.in);
 	
 	public PhoneBookManager(int num) {
 		myPhoneInfo = new PhoneInfo[100];
-		numOfInfo = 0; //처음 저장된 인원은 0명이므로
 		
 		readPhoneBook(); //read는 메인에서 manager부르자마자 바로 호출되야 하니까
 	}
@@ -209,7 +207,7 @@ public class PhoneBookManager {
 					System.out.println("\n자동저장을 시작합니다.");
 				}
 				else { //살아있는 쓰레드가 있다면
-					System.out.println("※경고※ 이미 자동저장이 실행중입니다.");
+					System.out.println("\n※경고※ 이미 자동저장이 실행중입니다.");
 				}
 			}
 			else if(isAutoSave ==2) { //자동저장off
