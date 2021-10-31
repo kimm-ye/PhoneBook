@@ -109,6 +109,10 @@ public class PhoneBookManager extends IConnectImpl{
 			e.printStackTrace();
 		}
 	}
+
+	public void exit() {
+		close();
+	}
 }
 
 	

@@ -67,7 +67,7 @@ public class IConnectImpl implements IConnect {
 			if(psmt != null)psmt.close();
 			if(rs!=null)rs.close();
 			if(stmt!=null)stmt.close();
-			System.out.println("자원반납완료");
+			System.out.println("\n자원반납완료");
 		}
 		catch (Exception e) {
 			System.out.println("자원반납시 오류발생");

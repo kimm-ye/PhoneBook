@@ -33,6 +33,7 @@ public class PhoneBookVer09  {
 				manager.dataAllShow();
 				break;
 			case 5: //종료
+				manager.exit();
 				System.out.println("\n프로그램을 종료합니다.");
 				return; 
 			}
