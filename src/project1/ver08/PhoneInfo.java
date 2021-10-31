@@ -16,7 +16,6 @@ public class PhoneInfo implements Serializable { //Serializable 인터페이스�
 		this.phoneNumber = phoneNumber;
 	}
 	
-
 	public void showPhoneInfo() {
 		System.out.println("====================");
 		System.out.println("이름 : " + name); 
@@ -37,7 +36,7 @@ public class PhoneInfo implements Serializable { //Serializable 인터페이스�
 	
 	@Override
 	public String toString() {
-		return "이름 : " + name + " / " + "전화번호 : " + phoneNumber;
+		return "이름 : " + name + " / 전화번호 : " + phoneNumber;
 	}
 	
 	@Override
@@ -49,7 +48,6 @@ public class PhoneInfo implements Serializable { //Serializable 인터페이스�
 	@Override
 	public boolean equals(Object obj) {
 		PhoneInfo pi = (PhoneInfo)obj; //오브젝트가 더 높으니까 다운캐스팅
-		//System.out.print("equals()메서드 호출됨: "); //test용
 		if(pi.name.equals(this.name)) {
 			return true;
 		}

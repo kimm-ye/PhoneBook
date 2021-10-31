@@ -5,7 +5,7 @@ import java.io.PrintWriter;
 import java.util.HashSet;
 
 //자동저장
-public class AutoSaverT extends Thread { //thread 사용을 위해
+public class AutoSaverT extends Thread {
 	
 	PhoneBookManager pm;
 
@@ -20,7 +20,7 @@ public class AutoSaverT extends Thread { //thread 사용을 위해
 			while(true) {
 			PrintWriter out = new PrintWriter(new FileWriter("src/project1/ver08/AutoSaveBook.txt"));
 			
-				for(PhoneInfo pi : pm.set){ //pm에 set이 있으니까 가져온다
+				for(PhoneInfo pi : pm.set){ 
 		            out.println(pi.toString());
 				} 
 				out.close();
